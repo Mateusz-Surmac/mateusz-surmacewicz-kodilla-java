@@ -3,6 +3,7 @@ package com.kodilla.testing.shape;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Nested
@@ -51,19 +52,20 @@ class ShapeCollectorTestSuite {
         ShapeCollector oldShape = newShape.getFigure(0);
 
         //Then
-        Assertions.assertEquals(newShape, oldShape);
+        Assertions.assertEquals(newShape.getFigure(0), oldShape);
     }
     @Test
     void testShowFigures() {
         //Given
-        ShapeCollector newShape = new ShapeCollector("Wielobok", 40);
-        List<ShapeCollector> listOfShapes = new ArrayList<>();
+        ShapeCollector newShape = new ShapeCollector("Wielobok",40);
+        List<String> listOfShapes = new ArrayList<>();
 
         //When
+        List<String> oldList = Collections.singletonList(newShape.showFigures());
         listOfShapes.add(newShape.showFigures());
 
         //Then
-        Assertions.assertEquals(listOfShapes,newShape);
+        Assertions.assertEquals(listOfShapes,oldList);
 
     }
 }

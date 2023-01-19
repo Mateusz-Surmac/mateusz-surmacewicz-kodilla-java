@@ -14,20 +14,35 @@ public class ShapeCollector {
         this.Field = Field;
     }
     public void addFigure(ShapeCollector shape) {
+        ShapeCollector newFigure = new ShapeCollector(ShapeName, Field);
+        shapeCollectorList.add(newFigure);
     }
     public boolean removeFigure(ShapeCollector shape) {
-        return true;
+        boolean result = false;
+        if (shapeCollectorList.contains(shape)) {
+            shapeCollectorList.remove(shape);
+            result = true;
+        }
+        return result;
     }
-    public String getFigure(int n) {
-        return null;
+    public ShapeCollector getFigure(int n) {
+        ShapeCollector figure = shapeCollectorList.get(n);
+        return figure;
     }
-    public ShapeCollector showFigures() {
-        return null;
+    public String showFigures() {
+        List<String> allShapes = new ArrayList<>();
+        for (ShapeCollector x : shapeCollectorList) {
+            allShapes.add(x.getShapeName());
+        }
+        return "" + allShapes;
     }
     public int getShapesQuantity() {
-        int result = shapeCollectorList.size();
+            int result = shapeCollectorList.size();
         return result;
     }
 
+    public String getShapeName() {
+        return ShapeName;
+    }
 
 }

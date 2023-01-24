@@ -10,13 +10,22 @@ public class ForumUser {                                       // [5]
     private String realName;                                    // [7]
     private List<ForumPost> posts = new ArrayList<>();          // [8]
     private List<ForumComment> comments = new LinkedList<>();   // [9]
+    private List<ForumUser> usersList = new ArrayList<>();
 
     public ForumUser(String name, String realName) {            // [10]
         //name visible on forum
         this.name = name;                                        // [11]
         //real name of the user
         this.realName = realName;                                // [12]
-    }                                                           // [13]
+    }
+    public List<String> forumUserList(){
+        List<String> usersNames = new ArrayList<>();
+        ForumUser x = new ForumUser(name, realName);
+        for (ForumUser y : usersList) {
+            usersNames.add(getName());
+        }
+        return usersNames;
+    }
 
     public void addPost(String author, String postBody) {
         ForumPost thePost = new ForumPost(postBody, author);

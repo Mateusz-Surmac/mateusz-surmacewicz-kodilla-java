@@ -1,37 +1,25 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.iterate.NumbersGenerator;
-import com.kodilla.stream.lambda.ExpressionExecutor;
-import com.kodilla.stream.reference.FunctionalCalculator;
+import com.kodilla.stream.book.Book;
+import com.kodilla.stream.book.BookDirectory;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
 
-public class StreamMain {                                                     // [4]
+import java.util.Map;
+import java.util.stream.Collectors;
 
-    public static void main(String[] args) {                                 // [5]
-        ExpressionExecutor expressionExecutor = new ExpressionExecutor();
+public class StreamMain {
 
-        /*System.out.println("Calculating expressions with lambdas");
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a + b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
+    public static void main(String[] args) {
+        Forum theForumUserList = new Forum();
+        Map<Integer, ForumUser> theForumUsersList = theForumUserList.getUsersList().stream()
+                .filter(sex -> sex.getSex() == 'm')
+                .filter(year -> year.getBrithYear() >= 2003)
+                .filter(posts -> posts.getPosts() > 0)
+                .collect(Collectors.toMap(ForumUser::getId,x -> x));
 
-        System.out.println("Calculating expressions with method references");
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::multiplyAByB);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::addAToB);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::subBFromA);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
-
-        //---------------------------------------//
-
-        PoemBeautifier tekst = new PoemBeautifier();
-        tekst.beautify("Bardzo ładny tekst", PoemBeautifier::bigLetters);
-        tekst.beautify("Bardzo ładny tekst", PoemBeautifier::loudEnd);
-        tekst.beautify("Bardzo ładny tekst", PoemBeautifier::fullOfEmotions);
-        tekst.beautify("Bardzo ładny tekst", PoemBeautifier::hide);*/
-
-        //-------------------//
-        System.out.println("Using Stream to generate even numbers from 1 to 20");
-        NumbersGenerator.generateEven(20);
+        theForumUsersList.entrySet().stream()
+                .map(entry -> entry.getKey() + " : " + entry.getValue())
+                .forEach(System.out::println);
     }
 }

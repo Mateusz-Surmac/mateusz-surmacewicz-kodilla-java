@@ -6,13 +6,12 @@ public class Application {
         FlightSearch flightSearch = new FlightSearch();
 
         System.out.println("-------------FLIGHT TO--------------");
-        System.out.println(flightSearch.flightsTo("Poznan"));
+        System.out.println(flightSearch.flights("To","Poznan"));
 
         System.out.println("-------------FLIGHT FROM--------------");
-        System.out.println(flightSearch.flightsFrom("Warszawa"));
+        System.out.println(flightSearch.flights("From","Warszawa"));
 
         System.out.println("-----------FLIGHT THROUGH----------------");
-
-        System.out.println(flightSearch.flightThrough("Krakow","Poznan"));
+       System.out.println(flightSearch.flightThrough("Krakow","Poznan"));
     }
 }

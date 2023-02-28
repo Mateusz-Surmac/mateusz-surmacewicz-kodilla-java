@@ -9,15 +9,16 @@ public class Flight {
         this.arrivalCity = arrivalCity;
     }
 
-    public String getDepartureCity() {
-        return departureCity;
+    public String getCity(String ToOrFrom) {
+        if (ToOrFrom.equals("From")) {
+            return departureCity;
+        } else if (ToOrFrom.equals("To")) {
+            return arrivalCity;
+        }
+        return "Error";
     }
 
-    public String getArrivalCity() {
-        return arrivalCity;
-    }
-
-    @Override
+        @Override
     public String toString() {
         return "\n Flight{" +
                 "departureCity='" + departureCity + '\'' +

@@ -1,4 +1,4 @@
-package com.kodilla.enums.hotel;
+package com.kodilla.patterns.enums.hotel;
 
 public class HotelApp {
 

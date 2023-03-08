@@ -2,9 +2,12 @@ package com.kodilla.hibernate.manytomany.dao;
 
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,6 +16,8 @@ class CompanyDaoTestSuite {
 
     @Autowired
     private CompanyDao companyDao;
+    @Autowired
+    private EmployeeDao employeeDao;
 
     @Test
     void testSaveManyToMany() {
@@ -57,5 +62,48 @@ class CompanyDaoTestSuite {
             companyDao.deleteById(greyMatterId);
         } catch (Exception e) {
         }
+    }
+
+    @Test
+    void testFindByLastname() {
+        //Given
+        Employee employee1 = new Employee("Boleslaw" , "Chrobry");
+        Employee employee2 = new Employee("Boleslaw", "Szczodry");
+        Employee employee3 = new Employee("Boleslaw", "Krzywoustny");
+
+        //When
+        employeeDao.save(employee1);
+        employeeDao.save(employee2);
+        employeeDao.save(employee3);
+
+        List<Employee> employeeList = employeeDao.findLastName("Chrobry");
+
+        //Then
+        Assertions.assertEquals(1, employeeList.size());
+
+        //CleanUp
+        employeeDao.deleteAll();
+    }
+
+    @Test
+    void firstThreeLetters() {
+        //Given
+        Company company1 = new Company("Big pits");
+        Company company2 = new Company("Big Buildings");
+        Company company3 = new Company("Shredding");
+
+        //When
+        companyDao.save(company1);
+        companyDao.save(company2);
+        companyDao.save(company3);
+
+        List<Company> companies = companyDao.firstThreeLetters("Big");
+
+        //Then
+        Assertions.assertEquals(2,companies.size());
+
+        //CleanUp
+        companyDao.deleteAll();
+
     }
 }

@@ -10,6 +10,10 @@ import java.util.List;
         name = "Employee.findLastName",
         query = "FROM Employee WHERE lastname = :LASTNAME"
 )
+@NamedQuery(
+        name = "Employee.lastnamePart",
+        query = "FROM Employee WHERE lastname LIKE :PART"
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {

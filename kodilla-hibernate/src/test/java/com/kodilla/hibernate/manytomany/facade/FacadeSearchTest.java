@@ -30,9 +30,7 @@ public class FacadeSearchTest {
         List<Employee> employeeList = facadeSearch.employeeByNamePart("wal");
 
         //Then
-/*
         assertEquals(1,employeeList.size());
-*/
 
         //Clean up
         employeeDao.delete(employee);
@@ -47,9 +45,7 @@ public class FacadeSearchTest {
         List<Company> companyList = facadeSearch.companyByNamePatyList("pan");
 
         //Then
-/*
         assertEquals(1,companyList.size());
-*/
 
 
         //Clean up

@@ -13,4 +13,5 @@ import java.util.List;
 public interface CompanyDao extends CrudRepository<Company, Integer> {
 
     List<Company> firstThreeLetters(@Param("PARTOFNAME") String threeChars);
+    List<Company> namePart(@Param("PART") String namePart);
 }
